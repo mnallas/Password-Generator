@@ -1,4 +1,3 @@
-// Assignment Code
 var lowerCase = [
   "a",
   "b",
@@ -65,7 +64,6 @@ var characters = [];
 
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
 function writePassword() {
   var uCase = confirm("Do you want uppercase in your password?");
   if (uCase === true) {
@@ -97,7 +95,6 @@ function writePassword() {
   if (pwdLength === "" || pwdLength < 8 || pwdLength > 128) {
     alert("length has to be between 8 to 128! Please try again.");
     characters = [];
-    pwdLength = null;
     writePassword();
   }
 
@@ -109,7 +106,6 @@ function writePassword() {
   console.log(password);
 }
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword(num, arr) {
