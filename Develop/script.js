@@ -64,18 +64,6 @@ var symbols = ["!", "@", "#", "$", "%", "^", "&", "*"];
 var characters = [];
 
 var generateBtn = document.querySelector("#generate");
-// var pwdCriteria = prompt(
-//   "Please choose criteria for password: 1 - Minimum of 8 chars; 2 - no repeating characters; 3 - No ascending/descending characters; "
-// );
-
-// function validateInput(prompt) {
-//   if (prompt === "" || prompt < 8 || prompt > 128) {
-//     alert("Please choose at least each prompt!");
-//     return false;
-//   }
-// }
-
-//function pwdPrompt("string") {
 
 // Write password to the #password input
 function writePassword() {
@@ -99,15 +87,26 @@ function writePassword() {
     characters.push(numbers);
   }
 
-  var pwdLength = prompt("How long is the password: (8-128 characters) ");
+  if (uCase === false && lCase === false && sym === false && num === false) {
+    alert("Please choose say 'OK' to at least one prompt! Try again.");
+    characters = [];
+    writePassword();
+  }
+
+  var pwdLength = prompt("Password length (8-128): ");
   if (pwdLength === "" || pwdLength < 8 || pwdLength > 128) {
     alert("length has to be between 8 to 128! Please try again.");
+    characters = [];
+    pwdLength = null;
+    writePassword();
   }
+
   var password = generatePassword(pwdLength, characters);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
   characters = [];
+  console.log(password);
 }
 
 // Add event listener to generate button
