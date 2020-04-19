@@ -61,36 +61,53 @@ var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 var symbols = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
-var characters = [lowerCase, upperCase, numbers, symbols];
+var characters = [];
 
 var generateBtn = document.querySelector("#generate");
 // var pwdCriteria = prompt(
 //   "Please choose criteria for password: 1 - Minimum of 8 chars; 2 - no repeating characters; 3 - No ascending/descending characters; "
 // );
 
-function validateInput(prompt) {
-  if (prompt === "" || prompt < 8 || prompt > 128) {
-    alert("Please choose at least each prompt!");
-    return false;
-  }
-}
+// function validateInput(prompt) {
+//   if (prompt === "" || prompt < 8 || prompt > 128) {
+//     alert("Please choose at least each prompt!");
+//     return false;
+//   }
+// }
+
+//function pwdPrompt("string") {
 
 // Write password to the #password input
 function writePassword() {
-  var charCriteria = prompt(
-    "Please choose characters for password: 1 - Lowercase; 2 - Uppercase; 3 - Numbers; 4 - Symbols; "
-  );
-  if (validateInput(charCriteria) === false) {
-    writePassword();
+  var uCase = confirm("Do you want uppercase in your password?");
+  if (uCase === true) {
+    characters.push(upperCase);
   }
+
+  var lCase = confirm("Do you want lowercase in your password?");
+  if (lCase === true) {
+    characters.push(lowerCase);
+  }
+
+  var sym = confirm("Do you want symbols in your password?");
+  if (sym === true) {
+    characters.push(symbols);
+  }
+
+  var num = confirm("Do you want numbers in your password?");
+  if (num === true) {
+    characters.push(numbers);
+  }
+
   var pwdLength = prompt("How long is the password: (8-128 characters) ");
-  if (pwdLength === false) {
-    pwdLength;
+  if (pwdLength === "" || pwdLength < 8 || pwdLength > 128) {
+    alert("length has to be between 8 to 128! Please try again.");
   }
   var password = generatePassword(pwdLength, characters);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  characters = [];
 }
 
 // Add event listener to generate button
